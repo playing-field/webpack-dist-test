@@ -344,9 +344,9 @@ function handleDelete(event) {
         initPagination();
         renderPage(activePage ? activePage : 1);
         showOrHideTFoot();
-
-        event.stopPropagation();
     }
+
+    event.stopPropagation();
 }
 
 function showOrHideTFoot() {
