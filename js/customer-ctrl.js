@@ -19,15 +19,18 @@
  * @since : 11/15/20
  **/
 
+ import {validate} from './validation';
+//  import './validation';
+
 /*===============================================================================
  * Global Variables
  *===============================================================================*/
 
-var txtId;
-var txtName;
-var txtAddress;
+export var txtId;
+export var txtName;
+export var txtAddress;
 var tblCustomers;
-var customers = [];
+export var customers = [];
 var selectedCustomer = null;
 var selectedRow = null;
 var pageSize = -1;
@@ -287,8 +290,12 @@ function addCustomersToTable(startIndex, endIndex) {
         row.insertCell(0).innerText = customers[i].id;
         row.insertCell(1).innerText = customers[i].name;
         row.insertCell(2).innerText = customers[i].address;
-        row.insertCell(3).innerHTML = '<div class="trash" onclick="handleDelete(event)"></div>';
+        row.insertCell(3).innerHTML = '<div class="trash"></div>';
     }
+
+    document.querySelectorAll('.trash').forEach(function(trash){
+        trash.addEventListener('click',handleDelete);
+    });
 }
 
 function toggleBackwardForwardDisability(page) {

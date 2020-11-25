@@ -18,12 +18,12 @@
  * @author : Ranjith Suranga <suranga@ijse.lk>
  * @since : 11/15/20
  **/
-
+import {txtId,txtName,txtAddress,customers} from './customer-ctrl';
 /*===============================================================================
  * Functions
  *===============================================================================*/
 
-function validate() {
+export function validate() {
     /* Object Literal {}, Array Literal [], RegExp Literal /expression/ */
     /* new Object(), new Array(), new RegExp() */
 
