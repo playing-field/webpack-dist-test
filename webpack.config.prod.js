@@ -1,38 +1,18 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-module.exports = {
-    entry: './src/index.js',
+const { default: merge } = require("webpack-merge");
+const superConfig= require('./webpack.config');
+module.exports =merge(superConfig, {
     output:{
-        filename:'main.bundle.js',
-        // path:'C:/Users/VISURA/OneDrive/Desktop/DEP/Class/2020.11.24/Exercise/hello-webpack/dist',
-        path:__dirname+'/dist/',
-        publicPath:'',
-        assetModuleFilename:'asset/[hash][ext][query]'
-    },
-    // mode:'production',
-    module: {
-        rules:[
-            {
-                test: /\.scss/,
-                use: [MiniCssExtractPlugin.loader,'css-loader','sass-loader']
-            },
-            {
-                test:/\.(png|jepg|jpg|gif|svg|woff|woff2|eot|ttf|otf)$/,
-                type:'asset/resource'
-            }
-        ]
+        filename:'main.[contenthash].bundle.js',
+        path: __dirname+ '/docs/'
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename:'main.min.css'
+       new CleanWebpackPlugin(),
+       new MiniCssExtractPlugin({
+        filename:'main.[contenthash].min.css'
         }),
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template:'./src/index.html'
-        })
+      
     ],
-    
     mode: 'production'
-}
+})

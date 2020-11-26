@@ -1,37 +1,20 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-module.exports = {
-    entry: './index.js',
-    output:{
-        filename:'main.bundle.js',
-        // path:'C:/Users/VISURA/OneDrive/Desktop/DEP/Class/2020.11.24/Exercise/hello-webpack/dist',
-        path:__dirname+'/dist/',
-        publicPath:'',
-        assetModuleFilename:'asset/[hash][ext][query]'
-    },
-    // mode:'production',
-    module: {
-        rules:[
-            {
-                test: /\.scss/,
-                use: [MiniCssExtractPlugin.loader,'css-loader','sass-loader']
-            },
-            {
-                test:/\.(png|jepg|jpg|gif|svg|woff|woff2|eot|ttf|otf)$/,
-                type:'asset/resource'
-            }
-        ]
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename:'main.min.css'
-        }),
-        
-    ],
+const { default: merge } = require("webpack-merge");
+const superConfig=require('./webpack.config');
+module.exports = merge(superConfig,{
+    
     devServer:{
-        publicPath:'/dist/',
-        watchContentBase:true,
-        // contentBase:'.' meka ona na bydefault thiyenne eka nisa
+        // publicPath:'/dist/', meka meheam ona na dan index.html eka thiyana thanamayi thiyenne anith dewal e hinda awulk na
+        // watchContentBase:true, methanadi meka ona wenneth na ayi hetuwa eya khomath dan dist eka diha bln innwa index.html ekath eka athule thiyanwa
+        // contentBase:'.' 
+
+        port:3000
     },
-    mode: 'development'
-}
+    mode: 'development',
+    plugins:[
+        new MiniCssExtractPlugin({
+            filename:'main.css'
+        }),
+    ],
+    // devtool:false
+})

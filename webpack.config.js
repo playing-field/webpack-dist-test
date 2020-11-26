@@ -1,4 +1,3 @@
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -25,14 +24,12 @@ module.exports = {
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename:'main.min.css'
-        }),
-        new CleanWebpackPlugin(),
+                
         new HtmlWebpackPlugin({
             template:'./src/index.html'
-        })
+        }),
+        
     ],
     
-    mode: 'production'
+   
 }
